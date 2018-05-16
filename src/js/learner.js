@@ -1,10 +1,7 @@
 "use strict";
 import 'babel-polyfill';
 
-import {Array1D, CostReduction, Graph, NDArrayMathGPU} from 'deeplearn';
-import {InCPUMemoryShuffledInputProviderBuilder} from 'deeplearn';
-import {Session, SGDOptimizer, Tensor} from 'deeplearn';
-import {Scalar} from 'deeplearn';
+import * as dl from 'deeplearn';
 
 const EPSILON = 1e-7;
 const NUM_LAYERS = 3;
