@@ -32,11 +32,12 @@ html {
 .icon {
   background-repeat: no-repeat;
   background-size: 100%;
-}</style>
-  <style>/* Copyright 2014 The Chromium Authors. All rights reserved.
-   Use of this source code is governed by a BSD-style license that can be
-   found in the LICENSE file. */
+}
 
+/* Copyright 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+ 
 button {
   border: 0;
   border-radius: 2px;
@@ -483,8 +484,7 @@ input[type=checkbox]:checked ~ .checkbox::before {
     padding-right: 0;
   }
 }
-</style>
-  <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+/* Copyright 2013 The Chromium Authors. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file. */
 

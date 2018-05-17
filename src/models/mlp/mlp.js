@@ -1,7 +1,5 @@
 "use strict";
-import 'babel-polyfill';
-
-import * as dl from 'deeplearn';
+import * as tf from 'tfjs';
 
 const EPSILON = 1e-7;
 const NUM_LAYERS = 3;
