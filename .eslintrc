@@ -1,0 +1,33 @@
+{
+  "extends": "google",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "comma-dangle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "no-bitwise": "off",
+    "no-continue": "off",
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off",
+    "no-unused-vars": "off",
+    "camelcase": "off",
+    "arrow-parens": "off",
+    "object-curly-spacing": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true
+      }
+    ]
+  }
+}
