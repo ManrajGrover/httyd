@@ -8,8 +8,6 @@ import { getTimeStamp } from './utils';
 import Runner from './Runner';
 import CollisionBox from './CollisionBox';
 
-console.log('LOL');
-
 /**
  * T-rex game character.
  * @param {HTMLCanvas} canvas
