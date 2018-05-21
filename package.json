@@ -7,18 +7,19 @@
     "build": "webpack -p",
     "watch": "webpack --watch",
     "lint": "eslint ./src",
-    "start:dev": "DEBUG=1 webpack-dev-server"
+    "start:dev": "DEBUG=1 webpack-dev-server --client-log-level=none"
   },
   "author": "Manraj Singh Grover <manrajsinghgrover@gmail.com>",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-3": "^6.24.1",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.7",
     "eslint": "^4.19.1",

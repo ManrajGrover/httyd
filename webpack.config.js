@@ -32,14 +32,12 @@ if (!DEBUG) {
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new OptimizeCssAssetsPlugin()
-  );;
+  );
 }
 
 module.exports = {
   entry: {
-    'game/js/Runner': path.resolve(__dirname, 'src/game/js/Runner.js'),
-    'game/js/trex': path.resolve(__dirname, 'src/game/js/trex.js'),
-    'models/mlp/mlp': path.resolve(__dirname, 'src/models/mlp/mlp.js'),
+    app: path.resolve(__dirname, 'src/app/app.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -59,7 +57,10 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
-          options: { presets: ['es2015', 'stage-3'] },
+          options: {
+            presets: ['env'],
+            plugins: ['babel-plugin-transform-class-properties'],
+          },
         },
       },
     ],

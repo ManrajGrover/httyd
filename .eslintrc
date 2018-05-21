@@ -2,7 +2,9 @@
   "extends": "google",
   "parser": "babel-eslint",
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true,
+    "node": true
   },
   "plugins": [
     "prettier"
@@ -22,6 +24,7 @@
     "camelcase": "off",
     "arrow-parens": "off",
     "object-curly-spacing": "off",
+    "no-undef": "error",
     "prettier/prettier": [
       "error",
       {
