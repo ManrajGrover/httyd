@@ -26,11 +26,28 @@ class MultilayerPerceptronBuilder {
     }
     const optimizerName = optimizer['name'];
     if (optimizerName == 'sgd') {
-      this._optimizer = tf.train.sgd();
+      const { learningRate } = optimizer['parameters'];
+      this._optimizer = tf.train.sgd(learningRate);
     } else if (optimizerName == 'momentum') {
-      this._optimizer = tf.train.momentum();
+      const { learningRate, momentum, useNesterov } = optimizer['parameters'];
+      this._optimizer = tf.train.momentum(learningRate, momentum, useNesterov);
     } else if (optimizerName === 'adagrad') {
+      const { learningRate, initialAccumulatorValue } = optimizer['parameters'];
       this._optimizer = tf.train.adagrad();
+    } else if (optimizerName === 'adadelta') {
+      const { learningRate, rho, epsilon } = optimizer['parameters'];
+      this._optimizer = tf.train.adadelta(learningRate, rho, epsilon);
+    } else if (optimizerName === 'adam') {
+      const { learningRate, beta1, beta2, epsilon } = optimizer['parameters'];
+      this._optimizer = tf.train.adam(learningRate, beta1, beta2, epsilon);
+    } else if (optimizerName === 'adamax') {
+      const { learningRate, beta1, beta2, epsilon, decay } = optimizer['parameters'];
+      this._optimizer =
+          tf.train.adamax(learningRate, beta1, beta2, epsilon, decay);
+    } else if (optimizerName === 'rmsprop') {
+      const { learningRate, decay, momentum, epsilon, centered } = optimizer['parameters'];
+      this._optimizer =
+          tf.train.rmsprop(learningRate, decay, momentum, epsilon, centered);
     } else {
       throw new Error(`Optimizer ${optimizerName} is not implemented`);
     }
