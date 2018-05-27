@@ -13,15 +13,15 @@ class MultilayerPerceptronBuilder {
     inputSize,
     outputSize,
     hiddenLayerSizes,
-    regularization,
-    optimizer,
-    activation
+    optimizer = 'adam',
+    activation = 'relu'
   ) {
     this._inputSize = inputSize;
     this._outputSize = outputSize;
     this._hiddenLayerSizes = hiddenLayerSizes;
     this.optimizer = optimizer;
-    this._activation = this.activationFunction[activation];
+    this._activation =
+      MultilayerPerceptronBuilder.activationFunction[activation];
   }
 
   set optimizer(optimizer) {
@@ -122,7 +122,7 @@ class MultilayerPerceptronBuilder {
 
   async train(trainData, trainLabels) {
     const history = await this._model.fit(trainData, trainLabels, {
-      epochs: this.EPOCHS,
+      epochs: MultilayerPerceptronBuilder.EPOCHS,
     });
 
     console.log(history);
