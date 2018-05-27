@@ -194,7 +194,6 @@ class Runner {
     this.activated = false; // Whether the easter egg has been activated.
     this.playing = false; // Whether the game is currently in play state.
     this.crashed = false;
-    this.paused = false;
     this.inverted = false;
     this.invertTimer = 0;
     this.resizeTimerId_ = null;
@@ -418,7 +417,7 @@ class Runner {
       this.tRex.update(0);
 
       // Outer container and distance meter.
-      if (this.playing || this.crashed || this.paused) {
+      if (this.playing || this.crashed) {
         this.containerEl.style.width = this.dimensions.WIDTH + 'px';
         this.containerEl.style.height = this.dimensions.HEIGHT + 'px';
         this.distanceMeter.update(0, Math.ceil(this.distanceRan));
@@ -486,22 +485,6 @@ class Runner {
     this.tRex.playingIntro = false;
     this.containerEl.style.webkitAnimation = '';
     this.playCount++;
-
-    // Handle tabbing off the page. Pause the current game.
-    document.addEventListener(
-      Runner.events.VISIBILITY,
-      this.onVisibilityChange.bind(this)
-    );
-
-    window.addEventListener(
-      Runner.events.BLUR,
-      this.onVisibilityChange.bind(this)
-    );
-
-    window.addEventListener(
-      Runner.events.FOCUS,
-      this.onVisibilityChange.bind(this)
-    );
   }
 
   clearCanvas() {
@@ -673,7 +656,7 @@ class Runner {
       // e.preventDefault();
     }
 
-    if (!this.crashed && !this.paused) {
+    if (!this.crashed) {
       if (
         Runner.keycodes.JUMP[e.keyCode]
         // || e.type == Runner.events.TOUCHSTART
@@ -740,7 +723,7 @@ class Runner {
       ) {
         this.restart();
       }
-    } else if (this.paused && isjumpKey) {
+    } else if (isjumpKey) {
       // Reset the jump state
       this.tRex.reset();
       this.play();
@@ -817,7 +800,6 @@ class Runner {
 
   stop() {
     this.playing = false;
-    this.paused = true;
     cancelAnimationFrame(this.raqId);
     this.raqId = 0;
   }
@@ -825,7 +807,6 @@ class Runner {
   play() {
     if (!this.crashed) {
       this.playing = true;
-      this.paused = false;
       this.tRex.update(0, Trex.status.RUNNING);
       this.time = getTimeStamp();
       this.update();
@@ -837,7 +818,6 @@ class Runner {
       this.playCount++;
       this.runningTime = 0;
       this.playing = true;
-      this.paused = false;
       this.crashed = false;
       this.distanceRan = 0;
       this.setSpeed(this.config.SPEED);
@@ -894,19 +874,19 @@ class Runner {
   /**
    * Pause the game if the tab is not in focus.
    */
-  onVisibilityChange(e) {
-    if (
-      document.hidden ||
-      document.webkitHidden ||
-      e.type == 'blur' ||
-      document.visibilityState != 'visible'
-    ) {
-      this.stop();
-    } else if (!this.crashed) {
-      this.tRex.reset();
-      this.play();
-    }
-  }
+  // onVisibilityChange(e) {
+  //   if (
+  //     document.hidden ||
+  //     document.webkitHidden ||
+  //     e.type == 'blur' ||
+  //     document.visibilityState != 'visible'
+  //   ) {
+  //     this.stop();
+  //   } else if (!this.crashed) {
+  //     this.tRex.reset();
+  //     this.play();
+  //   }
+  // }
 
   /**
    * Play a sound.
