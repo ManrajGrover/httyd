@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const DEBUG = JSON.parse(process.env.DEBUG || '0');
 
@@ -29,10 +30,7 @@ const plugins = [
 ];
 
 if (!DEBUG) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
-    new OptimizeCssAssetsPlugin()
-  );
+  plugins.push(new UglifyJSPlugin(), new OptimizeCssAssetsPlugin());
 }
 
 module.exports = {

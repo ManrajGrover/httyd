@@ -136,6 +136,7 @@ export function checkForCollision(obstacle, tRex, opt_canvasCtx) {
       }
     }
   }
+
   return false;
 }
 
