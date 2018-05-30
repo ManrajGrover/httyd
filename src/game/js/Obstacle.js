@@ -216,7 +216,7 @@ class Obstacle {
       if (this.typeConfig.speedOffset) {
         speed += this.speedOffset;
       }
-      this.xPos -= Math.floor(speed * FPS / 1000 * deltaTime);
+      this.xPos -= Math.floor(((speed * FPS) / 1000) * deltaTime);
 
       // Update frame
       if (this.typeConfig.numFrames) {
