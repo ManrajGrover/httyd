@@ -90,7 +90,7 @@ class Horizon {
    * @param {number} currentSpeed
    */
   updateClouds(deltaTime, speed) {
-    let cloudSpeed = this.cloudSpeed / 1000 * deltaTime * speed;
+    let cloudSpeed = (this.cloudSpeed / 1000) * deltaTime * speed;
     let numClouds = this.clouds.length;
 
     if (numClouds) {

@@ -174,7 +174,7 @@ class Trex {
     // Game intro animation, T-rex moves in from the left.
     if (this.playingIntro && this.xPos < this.config.START_X_POS) {
       this.xPos += Math.round(
-        this.config.START_X_POS / this.config.INTRO_DURATION * deltaTime
+        (this.config.START_X_POS / this.config.INTRO_DURATION) * deltaTime
       );
     }
 
