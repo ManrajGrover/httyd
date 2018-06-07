@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const DEBUG = JSON.parse(process.env.DEBUG || '0');
 
@@ -22,17 +23,14 @@ const plugins = [
       copyUnmodified: true,
     }
   ),
-  new ExtractTextPlugin({
+  new MiniCssExtractPlugin({
     filename: 'game/css/style.min.css',
     allChunks: true,
   }),
 ];
 
 if (!DEBUG) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
-    new OptimizeCssAssetsPlugin()
-  );
+  plugins.push(new UglifyJSPlugin(), new OptimizeCssAssetsPlugin());
 }
 
 module.exports = {
@@ -47,10 +45,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: [/\.es6$/, /\.js$/],
@@ -58,7 +53,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
+            presets: [['env', { targets: { uglify: true } }]],
             plugins: ['babel-plugin-transform-class-properties'],
           },
         },

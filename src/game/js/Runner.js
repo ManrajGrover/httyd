@@ -301,9 +301,7 @@ class Runner {
     // Reduce the speed on smaller mobile screens.
     if (this.dimensions.WIDTH < DEFAULT_WIDTH) {
       const mobileSpeed =
-        speed *
-        this.dimensions.WIDTH /
-        DEFAULT_WIDTH *
+        ((speed * this.dimensions.WIDTH) / DEFAULT_WIDTH) *
         this.config.MOBILE_SPEED_COEFFICIENT;
       this.currentSpeed = mobileSpeed > speed ? speed : mobileSpeed;
     } else if (opt_speed) {
@@ -539,7 +537,7 @@ class Runner {
         hasObstacles && checkForCollision(this.horizon.obstacles[0], this.tRex);
 
       if (!collision) {
-        this.distanceRan += this.currentSpeed * deltaTime / this.msPerFrame;
+        this.distanceRan += (this.currentSpeed * deltaTime) / this.msPerFrame;
 
         if (this.currentSpeed < this.config.MAX_SPEED) {
           this.currentSpeed += this.config.ACCELERATION;
