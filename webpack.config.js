@@ -1,11 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-const DEBUG = JSON.parse(process.env.DEBUG || '0');
+const MODE = process.env.NODE_ENV;
 
 const plugins = [
   new CopyWebpackPlugin(
@@ -29,7 +28,7 @@ const plugins = [
   }),
 ];
 
-if (!DEBUG) {
+if (MODE === 'production') {
   plugins.push(new UglifyJSPlugin(), new OptimizeCssAssetsPlugin());
 }
 

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "webpack",
+    "dev": "webpack --mode development",
     "build": "webpack -p",
     "watch": "webpack --watch",
     "lint": "eslint ./src",
-    "start:dev": "DEBUG=1 webpack-dev-server --client-log-level=none"
+    "start:dev": "webpack-dev-server --client-log-level=none --mode development"
   },
   "author": "Manraj Singh Grover <manrajsinghgrover@gmail.com>",
   "devDependencies": {
@@ -37,6 +37,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@tensorflow/tfjs": "^0.11.0"
+    "@tensorflow/tfjs": "^0.11.6"
   }
 }
